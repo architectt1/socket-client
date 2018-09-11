@@ -9,5 +9,10 @@ socket.on('disconnect', () => console.log('disconnected from server'));
   socket
     .on(event, (data) => {
       console.log(`received event '${event}' with payload ${JSON.stringify(data)}`);
+      if (event === 'start_countdown') {
+        setTimeout(() => {
+          socket.emit('cancel_exercise');
+        }, 10000);
+      }
     });
 });
